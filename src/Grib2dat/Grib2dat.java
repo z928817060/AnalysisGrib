@@ -55,9 +55,9 @@ public class Grib2dat implements Runnable {
         for(String fileName:fileNames){
             System.out.println("正在解析："+fileName);
             long start=System.currentTimeMillis(); /////////////////////////////////////////////////////
-            for(ElementName elementName:ElementName.values()) {////////////////////////////////////////////////
-//            for(int kkk=0;kkk<1;kkk++) {
-//                ElementName elementName=ElementName.VVEL;
+//            for(ElementName elementName:ElementName.values()) {////////////////////////////////////////////////
+            for(int kkk=0;kkk<1;kkk++) {
+                ElementName elementName=ElementName.MSL;
                 System.out.println("正在解析：：："+elementName.geteName());//////////////////////////////////////////////////
                 if(elementName.getType()=="isobaric") {                   //多层
                     for (String isobaricName : isobaric) {
@@ -75,7 +75,7 @@ public class Grib2dat implements Runnable {
                     String datName = new File(fileName).getName();
                     String date = datName.substring(0, 10);
                     String VTI = datName.substring(datName.length()-3);
-                    cacheDataFrame.pushData(gfsMem, date +VTI+ "_" + "9999"+"_"+elementName  );
+                    cacheDataFrame.pushData(gfsMem, date +VTI+ "_" + "-9999"+"_"+elementName  );
                 }
             }
             long end=System.currentTimeMillis();
@@ -163,7 +163,7 @@ public class Grib2dat implements Runnable {
                 if(Math.abs(c1.getTimeInMillis()-c0.getTimeInMillis())<(DTIME/2+1)*60*1000){
                     timeFlag=START_PARSE_TIME[i];
                     Grib2dat.getInstance().parseGrib();
-                    Grib2dat.getInstance().parseDat();
+//                    Grib2dat.getInstance().parseDat(); ///////////////////////////////////////////////////////////
                     try {
                         Thread.sleep((long)(DTIME)*60*1000);
                     } catch (InterruptedException e) {

@@ -22,7 +22,7 @@ public enum ElementName {
     HGTS("Geopotential_height_surface",         "地面位势","surface","gpm"),
     PRES("Pressure_surface",                    "本站气压","surface","Pa"),          //本站气压=地面气压
     RHS("Relative_humidity_height_above_ground", "2m相对湿度","surface" ,"%"),   //4维[1][1][721][1440]
-    MSL("Pressure_reduced_to_MSL_msl",          "本站海压","surface","Pa"),
+
     GUST("Wind_speed_gust_surface",             "阵风","surface" ,"m/s"),
 //**************************************************************************************************************************
 
@@ -48,8 +48,8 @@ public enum ElementName {
     V("v-component_of_wind_isobaric",       "大气水平风V","wind_isobaric","m/s"),
 
     //地面uv变成speed和direction
-    WSS("wind_speed","水平风速","surface","m/s"),
-    WDS("wind_direction","水平风向","surface","°"),
+    WSS("wind_speed_surface","水平风速","surface","m/s"),
+    WDS("wind_direction_surface","水平风向","surface","°"),
         /*
         风速风向
          */
@@ -66,9 +66,16 @@ public enum ElementName {
     //地面温度
     TMPS("Temperature_surface_C",                 "地面温度","surface" ,"°C"),  //单位需要转化k到度
         /*
-        大气温度
+        地面温度
          */
     TMPS0("Temperature_surface",        "地面温度","temperature_surface","K"),
+
+    //本站海压
+    MSL("Pressure_reduced_to_MSL_msl_C",          "本站海压","surface","Pa"),
+        /*
+        本站海压
+         */
+    MSL0("Pressure_reduced_to_MSL_msl",          "本站海压","MSL_msl","Pa"),
 //***********************************************************************************************************************
 
 //外部传入

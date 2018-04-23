@@ -127,7 +127,11 @@ public GFSMem readGrib(String fileName,ElementName elementName,String isobaricNa
             setGFSMem_TMPS(fileName);
             return gfsMem;
         }
-
+    //本站海压
+        if(elementName.geteName()==ElementName.MSL.geteName()){
+            setGFSMem_MSL(fileName);
+            return gfsMem;
+        }
 /*
     直接输出的要素
     **************************************************************
@@ -561,6 +565,19 @@ public GFSMem readGrib(String fileName,ElementName elementName,String isobaricNa
             for (int j = 0; j < lon_num; j++) {
                 float t = ByteData.short2float(gfsMen_t.getData()[i][j],gfsMen_t.getOffset(),gfsMen_t.getScale());
                 data1[0][i][j]= (float) (t-273.15);
+            }
+        }
+        setOffsetScale(data1);
+        element_data=ByteData.changeData(data1,offset,scale);//数据转化short
+        pack();
+    }
+    private void setGFSMem_MSL(String fileName){
+        GFSMem gfsMen_t = ReadGrib.getInstance().readGrib(fileName,ElementName.MSL0,"surface");
+        float[][][] data1 = new float[1][lat_num][lon_num];
+        for (int i = 0; i < lat_num; i++) {
+            for (int j = 0; j < lon_num; j++) {
+                float p = ByteData.short2float(gfsMen_t.getData()[i][j],gfsMen_t.getOffset(),gfsMen_t.getScale());
+                data1[0][i][j]=  p/100;
             }
         }
         setOffsetScale(data1);

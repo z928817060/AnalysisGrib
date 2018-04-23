@@ -56,9 +56,9 @@ public class Config {
         Properties properties=new Properties();
         InputStream in = null;
         try {
-            String springPath=Grib2dat.class.getClassLoader().getResource("").getPath()+"config/readGrib.properties";
-            in = new BufferedInputStream(new FileInputStream(springPath));
-//            in = new BufferedInputStream(new FileInputStream(System.getProperty("user.dir")+"/config/readGrib.properties"));
+//            String springPath=Grib2dat.class.getClassLoader().getResource("").getPath()+"config/readGrib.properties";
+//            in = new BufferedInputStream(new FileInputStream(springPath));
+            in = new BufferedInputStream(new FileInputStream(System.getProperty("user.dir")+"/config/readGrib.properties"));
             properties.load(in);
             inPath=properties.getProperty("inPath");
             inPath_JBDB=properties.getProperty("inPath_JBDB");
@@ -88,9 +88,9 @@ public class Config {
         Properties properties=new Properties();
         InputStream in = null;
         try {
-            String springPath=Grib2dat.class.getClassLoader().getResource("").getPath()+"config/weather.properties";
-            in = new BufferedInputStream(new FileInputStream(springPath));
-//            in = new BufferedInputStream(new FileInputStream(System.getProperty("user.dir")+"/config/weather.properties"));
+//            String springPath=Grib2dat.class.getClassLoader().getResource("").getPath()+"config/weather.properties";
+//            in = new BufferedInputStream(new FileInputStream(springPath));
+            in = new BufferedInputStream(new FileInputStream(System.getProperty("user.dir")+"/config/weather.properties"));
             properties.load(in);
             weather_freezing_rain=properties.getProperty("weather_freezing_rain");
             weather_ice_pellets=properties.getProperty("weather_ice_pellets");
